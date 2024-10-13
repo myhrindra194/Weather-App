@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { Input, InputGroup, Button, Spinner,  } from "reactstrap";
+import { Spinner,  } from "reactstrap";
 import DetailsGrid from "./components/DetailsGrid";
+import CardWeather from "./components/CardWeather";
+import CenterDiv from "./components/CenterDiv";
 
 function App(){
   const [city, setCity] = useState("Antananarivo");
@@ -24,35 +26,25 @@ function App(){
     setInputValue("");
   }
 
-  const location = data.location;
 
   return (data.length === 0) ?
   (
-    <Spinner />
+    <CenterDiv><Spinner /></CenterDiv>
   ):
   (
-    <div className="container py-5">
-      <div className="row d-flex justify-content-between">
-        <div className="col-lg-4 col-md-12 rounded">
-          <InputGroup className="mb-5">
-            <Input placeholder="City" className="rounded" value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
-            <Button color="primary" onClick={(e) => handleSubmit(e)} disabled={inputValue.trim().length === 0}>Search</Button>
-          </InputGroup>
-          <div className="text-center">
-            <img src={data.current.condition.icon} alt="Image" className="img-fluid" width={100} height={100}/>
-            <h1>{data.current.temp_c} °C</h1>
-            <h3 className="text-muted">{data.current.condition.text}</h3>
-            <p className="mt-5 fw-bold">{location.localtime}</p>
-          </div>
-          <div className="p-3 mt-5">
-            <p>Time zone: {location.tz_id}</p>
-            <p>Longitude: {location.lon} </p>
-            <p>Latitude: {location.lat}</p>
-          </div>
-        </div>
-        <DetailsGrid current= {data.current} location={location}/>
-      </div>
-    </div>
+    <CenterDiv>
+       <CardWeather 
+          inputValue={inputValue} 
+          setInputValue={e => setInputValue(e.target.value)} 
+          handleSubmit={e => handleSubmit(e)} 
+          location={data.location} 
+          current={data.current}
+        />
+        <DetailsGrid 
+          current= {data.current} 
+          location={data.location}
+        />
+    </CenterDiv>
   )
 }
 
