@@ -13,7 +13,11 @@ function App(){
     let URL = `https://api.weatherapi.com/v1/current.json?key=4cc70a4a42c54c12add140506241310&q=${city}`;
 
     fetch(URL)
-    .then(res => res.json())
+    .then(response => {
+      if (!response.ok) 
+        throw new Error('City not found');
+      return response.json()
+    })
     .then(data => setData(data))
     .catch(error => {console.error("Error while fetching data", error);
     })
@@ -22,7 +26,7 @@ function App(){
  
   const handleSubmit = (e) => {
     e.preventDefault();
-    setCity(inputValue.trim());
+    setCity(inputValue);
     setInputValue("");
   }
 
