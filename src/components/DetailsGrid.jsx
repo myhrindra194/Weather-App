@@ -3,7 +3,7 @@ import Details from "./Details";
 
 export default function DetailsGrid({current , location}){
     return(
-        <div className="col-lg-8 col-md-12 row align-items-start">
+        <div className="col-lg-8 col-md-12 row align-items-start justify-content-center">
           <h5 className="mb-5">{location.name} , {location.region} {location.country}</h5>
           <Details title="Visibility" content= {`${current.vis_km} Km`}/>
           <Details title="Humidity" content={`${current.humidity} %`}/>

@@ -29,6 +29,13 @@ function App(){
     setInputValue("");
   }
 
+  const handleKeyPress = (e) => {
+    if(e.key == "Enter"){
+      setCity(inputValue);
+      setInputValue("")
+    }
+  }
+
 
   return (data.length === 0) ?
   (
@@ -43,6 +50,7 @@ function App(){
           inputValue={inputValue} 
           setInputValue={e => setInputValue(e.target.value)} 
           handleSubmit={e => handleSubmit(e)} 
+          handleKeyPress={(e) => handleKeyPress(e)}
           location={data.location} 
           current={data.current}
         />

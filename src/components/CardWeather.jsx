@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
 import SearchBar from "./SearchBar"
-export default function CardWeather({inputValue, setInputValue, handleSubmit, location, current}){
+export default function CardWeather({inputValue, setInputValue, handleSubmit,handleKeyPress, location, current}){
     return (
         <div className="col-lg-4 col-md-12 rounded">
             <SearchBar 
                 inputValue={inputValue} 
                 setInputValue={setInputValue} 
-                handleSubmit={handleSubmit} 
+                handleSubmit={handleSubmit}
+                handleKeyPress={handleKeyPress}
             />
             <div className="text-center">
                 <img src={current.condition.icon} alt="Image" className="img-fluid" width={100} height={100}/>
