@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Spinner,  } from "reactstrap";
 import DetailsGrid from "./components/DetailsGrid";
 import CardWeather from "./components/CardWeather";
-import CenterDiv from "./components/CenterDiv";
 
 function App(){
   const [city, setCity] = useState("Antananarivo");
@@ -33,11 +32,14 @@ function App(){
 
   return (data.length === 0) ?
   (
-    <CenterDiv><Spinner /></CenterDiv>
+    <div className="container py-5">
+      <div className="d-flex justify-content-center align-items-center"><Spinner/></div>
+    </div>
   ):
   (
-    <CenterDiv>
-       <CardWeather 
+    <div className="container py-5">
+      <div className="row d-flex justify-content-between align-items-center">
+        <CardWeather 
           inputValue={inputValue} 
           setInputValue={e => setInputValue(e.target.value)} 
           handleSubmit={e => handleSubmit(e)} 
@@ -48,7 +50,9 @@ function App(){
           current= {data.current} 
           location={data.location}
         />
-    </CenterDiv>
+      </div>
+    </div>
+       
   )
 }
 
