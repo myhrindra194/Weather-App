@@ -39,13 +39,13 @@ function App(){
 
   return (data.length === 0) ?
   (
-    <div className="container py-5">
+    <div className="container py-5 h-100">
       <div className="d-flex justify-content-center align-items-center"><Spinner/></div>
     </div>
   ):
   (
     <div className="container py-5">
-      <div className="row d-flex justify-content-between align-items-center">
+      <div className="row d-flex justify-content-between align-items-center mt-3">
         <CardWeather 
           inputValue={inputValue} 
           setInputValue={e => setInputValue(e.target.value)} 
