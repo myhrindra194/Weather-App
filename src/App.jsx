@@ -2,25 +2,17 @@ import { useEffect, useState } from "react";
 import { Spinner,  } from "reactstrap";
 import DetailsGrid from "./components/DetailsGrid";
 import CardWeather from "./components/CardWeather";
+import { fetchData } from "./utils/fetchData";
 
 function App(){
   const [city, setCity] = useState("Antananarivo");
   const [data, setData] = useState([]);
   const [inputValue, setInputValue] = useState("");
 
-  useEffect(()=> {
+  useEffect(() => {
     let URL = `https://api.weatherapi.com/v1/current.json?key=4cc70a4a42c54c12add140506241310&q=${city}`;
 
-    fetch(URL)
-    .then(response => {
-      if (!response.ok) 
-        throw new Error('City not found');
-      return response.json()
-    })
-    .then(data => setData(data))
-    .catch(error => {console.error("Error while fetching data", error);
-    })
-
+    fetchData(URL).then(data => setData(data))
   }, [city])
  
   const handleSubmit = (e) => {
@@ -29,7 +21,7 @@ function App(){
     setInputValue("");
   }
 
-  const handleKeyPress = (e) => {
+  const handleKeyDown = (e) => {
     if(e.key == "Enter"){
       setCity(inputValue);
       setInputValue("")
@@ -50,7 +42,7 @@ function App(){
           inputValue={inputValue} 
           setInputValue={e => setInputValue(e.target.value)} 
           handleSubmit={e => handleSubmit(e)} 
-          handleKeyPress={(e) => handleKeyPress(e)}
+          handleKeyPress={(e) => handleKeyDown(e)}
           location={data.location} 
           current={data.current}
         />

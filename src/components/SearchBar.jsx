@@ -3,7 +3,7 @@ import { Input, InputGroup, Button } from "reactstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-export default function SearchBar({inputValue, setInputValue, handleSubmit, handleKeyPress}){
+export default function SearchBar({inputValue, setInputValue, handleSubmit, handleKeyDown}){
     return(
         <InputGroup className="mb-5" size="md">
             <Input
@@ -12,7 +12,7 @@ export default function SearchBar({inputValue, setInputValue, handleSubmit, hand
                 className="rounded input"
                 value={inputValue} 
                 onChange={setInputValue}
-                onKeyDown={handleKeyPress}
+                onKeyDown={handleKeyDown}
             />
             <Button 
                 color="primary" 
